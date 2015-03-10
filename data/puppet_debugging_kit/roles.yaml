@@ -21,6 +21,14 @@ roles:
         inline: |
           echo "export PATH=$PATH:/usr/local/bin" > /etc/profile.d/path_fix.sh
 
+  el-helper-packages:
+    provisioners:
+      - {type: shell, inline: yum install tree wget curl vim rsync htop w3m -y}
+
+  deb-helper-packages:
+    provisioners:
+      - {type: shell, inline: apt-get install tree wget curl vim rsync htop w3m -y}
+
   1gb-memory:
     providers:
       - type: virtualbox
@@ -198,6 +206,10 @@ roles:
   pe-forward-console:
     forwarded_ports:
       - {guest: 443, host: 4443, auto_correct: true}
+
+  pe-forward-higgs:
+    forwarded_ports:
+      - {guest: 3000, host: 3001 , auto_correct: true}
 
   pe-323-master:
     provisioners:
