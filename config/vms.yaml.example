@@ -8,6 +8,7 @@ vms:
     debug-kit: true
     box: puppetlabs/centos-6.5-64-nocm
     roles:
+      - pl-src-sync
       - el-helper-packages
       - pe-forward-console
       - el-stop-firewall
@@ -19,6 +20,7 @@ vms:
     debug-kit: true
     box: puppetlabs/centos-6.5-64-nocm
     roles:
+      - pl-src-sync
       - el-helper-packages
       - el-stop-firewall
       - el-fix-path

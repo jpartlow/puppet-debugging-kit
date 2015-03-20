@@ -9,6 +9,10 @@ roles:
     provisioners:
       - {type: hosts}
 
+  pl-src-sync:
+    synced_folders:
+      - {host_path: 'src/puppetlabs', guest_path: '/puppetlabs'}
+
   el-stop-firewall:
     provisioners:
       - {type: shell, inline: 'service iptables stop'}
