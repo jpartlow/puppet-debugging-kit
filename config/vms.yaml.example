@@ -4,26 +4,28 @@ vms:
   # NOTE: All `box:` declarations in this example point to vagrantcloud.com
   # and require Vagrant 1.5.0 or newer to function.
 
-  - name: pe-372-master
+  - name: pe-380-master
     debug-kit: true
     box: puppetlabs/centos-6.5-64-nocm
     roles:
-      - pl-src-sync
       - el-helper-packages
       - pe-forward-console
       - el-stop-firewall
       - el-fix-path
       - 4gb-memory
+      - pl-src-sync
+        #      - pe-builds-sync
       - base
 
-  - name: pe-372-agent
+  - name: pe-380-agent
     debug-kit: true
     box: puppetlabs/centos-6.5-64-nocm
     roles:
-      - pl-src-sync
       - el-helper-packages
       - el-stop-firewall
       - el-fix-path
+      - pl-src-sync
+        #      - pe-builds-sync
       - base
 
   #- name: pe-332-master
