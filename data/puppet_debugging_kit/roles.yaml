@@ -11,7 +11,13 @@ roles:
 
   pl-src-sync:
     synced_folders:
-      - {host_path: 'src/puppetlabs', guest_path: '/puppetlabs'}
+      # requires a project symlink to your general puppetlabs sources
+      - {host_path: 'src/puppetlabs', guest_path: '/puppetlabs', nfs: true}
+
+  pe-builds-sync:
+    synced_folders:
+      # requires a project symlink to your pe_builds
+      - {host_path: 'pe_builds', guest_path: '/pe_builds', nfs: true}
 
   el-stop-firewall:
     provisioners:
@@ -189,7 +195,7 @@ roles:
 
   poss-envpuppet:
     synced_folders:
-      - {host_path: 'src/puppetlabs', guest_path: '/puppetlabs'}
+      - {host_path: 'src/puppetlabs', guest_path: '/puppetlabs', nfs: true}
     provisioners:
       - type: shell
         # The EOF must be quoted to prevent shell expansion of the second line.
