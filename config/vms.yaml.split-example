@@ -1,0 +1,101 @@
+---
+vms:
+
+  # NOTE: All `box:` declarations in this example point to vagrantcloud.com
+  # and require Vagrant 1.5.0 or newer to function.
+
+  #   vagrant up
+  #   vagrant provision
+  # The second provisioning step ensures that all vms have up to date /etc/hosts
+  # Ensure you have the pe versions you in ~/.vagrant.d/pe_builds
+  # Untar the ones you want to build from
+  # Then on he master vm, cd to /pe_builds (assuming you have NFS setup)
+  #   puppet-enterprise-installer
+  # Use Higgs for install
+
+  - name: pe-380-master
+    debug-kit: false
+    hostname: pe-380-master.puppetdebug.vlan
+    box: puppetlabs/centos-6.5-64-nocm
+    roles:
+      - pe-forward-higgs
+      - el-helper-packages
+      - el-stop-firewall
+      - el-fix-path
+      - 3gb-memory
+      - pl-src-sync
+      - pe-builds-sync
+      - insecure-root-ssh
+      - base
+
+  - name: pe-380-db
+    debug-kit: false
+    hostname: pe-380-db.puppetdebug.vlan
+    box: puppetlabs/centos-6.5-64-nocm
+    roles:
+      - el-helper-packages
+      - el-stop-firewall
+      - el-fix-path
+      - 1gb-memory
+      - pl-src-sync
+        #      - pe-builds-sync
+      - insecure-root-ssh
+      - base
+
+  - name: pe-380-console
+    debug-kit: false
+    hostname: pe-380-console.puppetdebug.vlan
+    box: puppetlabs/centos-6.5-64-nocm
+    roles:
+      - el-helper-packages
+      - pe-forward-console
+      - el-stop-firewall
+      - el-fix-path
+      - 1gb-memory
+      - pl-src-sync
+        #      - pe-builds-sync
+      - insecure-root-ssh
+      - base
+
+  - name: pe-380-agent
+    debug-kit: false
+    hostname: pe-380-agent.puppetdebug.vlan
+    box: puppetlabs/centos-6.5-64-nocm
+    roles:
+      - el-helper-packages
+      - el-stop-firewall
+      - el-fix-path
+      - pl-src-sync
+      - 1gb-memory
+        #      - pe-builds-sync
+      - base
+
+  #- name: pe-332-master
+  #  debug-kit: true
+  #  box: puppetlabs/centos-6.5-64-nocm
+  #  roles:
+  #    - pe-forward-console
+  #    - el-stop-firewall
+  #    - el-fix-path
+  #    - 1gb-memory
+  #    - base
+
+  #- name: pe-332-agent
+  #  debug-kit: true
+  #  box: puppetlabs/centos-6.5-64-nocm
+  #  roles:
+  #    - el-stop-firewall
+  #    - el-fix-path
+  #    - base
+
+
+  #- name: poss-head-master
+  #  box: puppetlabs/centos-6.5-64-nocm
+  #  hostname: poss-head-centos.puppetdebug.vlan
+  #  roles:
+  #    - poss-envpuppet
+  #    - el-6-ruby193
+  #    - el-stop-firewall
+  #    - base
+
+# vim: set ft=yaml:
