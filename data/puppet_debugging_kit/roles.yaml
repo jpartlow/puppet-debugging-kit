@@ -57,6 +57,15 @@ roles:
         vmx:
           memsize: 2048
 
+  3gb-memory:
+    providers:
+      - type: virtualbox
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 3072]
+      - type: vmware_fusion
+        vmx:
+          memsize: 3072
+
   4gb-memory:
     providers:
       - type: virtualbox
