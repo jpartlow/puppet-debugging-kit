@@ -75,6 +75,15 @@ roles:
         vmx:
           memsize: 4096
 
+  insecure-root-ssh:
+    provisioners:
+      - type: shell
+        inline: |
+          mkdir -p /root/.ssh
+          chmod 700 /root/.ssh
+          name=`hostname | cut -d. -f1`
+          ssh-keygen -y -f /vagrant/.vagrant/machines/$name/virtualbox/private_key >> /root/.ssh/authorized_keys
+          chmod 600 /root/.ssh/authorized_keys
 
   # Puppet Open Source Roles
   # ========================
