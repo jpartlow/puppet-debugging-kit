@@ -45,7 +45,10 @@ class PuppetDebuggingKit::Filter::DebugKit
     end
 
     # If no hostname given, set a default.
-    vm_data['hostname'] ||= "#{vm_data['name']}.puppetdebug.vlan"
+    if !vm_data.include?('hostname')
+      hostname = vm_data['name'].gsub('.','')
+      vm_data['hostname'] ||= "#{hostname}.puppetdebug.vlan"
+    end
 
     # Ensure the VM definition has an array of provisioners
     vm_data['provisioners'] ||= []
@@ -69,7 +72,7 @@ class PuppetDebuggingKit::Filter::DebugKit
     # inputs.
     #
     # TODO: Revisit this and decide if a more flexible scheme is needed.
-    match = name.match /([[:alpha:]]+)-([[:alnum:]]+)-([[:alpha:]]+)/
+    match = name.match /([[:alpha:]]+)-([[:alnum:].]+)-([[:alpha:]]+)/
 
     # If the match failed, return nils as an error case.
     #
@@ -83,6 +86,9 @@ class PuppetDebuggingKit::Filter::DebugKit
     return [type, version, role]
   end
 
+  # If dot separation is provided in the version, it will be used.
+  #
+  # 3.99.0 for example
   def parse_version(version)
     # NOTE: We assume that Puppet has no min or max versions that extend into
     # double digits. So far, this assumption is consistent with history.
@@ -92,7 +98,12 @@ class PuppetDebuggingKit::Filter::DebugKit
     # parsing.
     #
     # FIXME: Needs validation and error handling.
-    major, minor, *patch = version.split('')
+    case version
+    when /\./
+      major, minor, *patch = version.split('.')
+    else
+      major, minor, *patch = version.split('')
+    end
 
     # FIXME: Just spitting back the patch here. Could be a number. Could be
     # something like `nightly`. Need to validate.
