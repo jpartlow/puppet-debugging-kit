@@ -14,6 +14,7 @@ if defined? Oscar # Do nothing if Oscar isn't loaded.
   # effect this behavior.
   config_dirs = %w[
     data/puppet_debugging_kit
+    data/puppet_debugging_kit/internal
     config
   ].map{|d| File.expand_path(d, vagrant_dir)}
 

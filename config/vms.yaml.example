@@ -6,7 +6,7 @@ vms:
 
   - name: pe-380-master
     debug-kit: true
-    box: puppetlabs/centos-6.5-64-nocm
+    box: puppetlabs/centos-6.6-64-nocm
     roles:
       - el-helper-packages
       - pe-forward-console
@@ -19,7 +19,25 @@ vms:
 
   - name: pe-380-agent
     debug-kit: true
-    box: puppetlabs/centos-6.5-64-nocm
+    box: puppetlabs/centos-6.6-64-nocm
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - base
+
+  - name: pe-372-master
+    debug-kit: true
+    box: puppetlabs/centos-6.6-64-nocm
+    roles:
+      - pe-forward-console
+      - el-stop-firewall
+      - el-fix-path
+      - 4gb-memory
+      - base
+
+  - name: pe-372-agent
+    debug-kit: true
+    box: puppetlabs/centos-6.6-64-nocm
     roles:
       - el-helper-packages
       - el-stop-firewall
@@ -30,7 +48,7 @@ vms:
 
   #- name: pe-332-master
   #  debug-kit: true
-  #  box: puppetlabs/centos-6.5-64-nocm
+  #  box: puppetlabs/centos-6.6-64-nocm
   #  roles:
   #    - pe-forward-console
   #    - el-stop-firewall
@@ -40,7 +58,7 @@ vms:
 
   #- name: pe-332-agent
   #  debug-kit: true
-  #  box: puppetlabs/centos-6.5-64-nocm
+  #  box: puppetlabs/centos-6.6-64-nocm
   #  roles:
   #    - el-stop-firewall
   #    - el-fix-path
@@ -48,7 +66,7 @@ vms:
 
 
   #- name: poss-head-master
-  #  box: puppetlabs/centos-6.5-64-nocm
+  #  box: puppetlabs/centos-6.6-64-nocm
   #  hostname: poss-head-centos.puppetdebug.vlan
   #  roles:
   #    - poss-envpuppet
