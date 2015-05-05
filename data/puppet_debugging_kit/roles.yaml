@@ -33,7 +33,7 @@ roles:
 
   el-helper-packages:
     provisioners:
-      - {type: shell, inline: yum install tree wget curl vim rsync htop w3m -y}
+      - {type: shell, inline: yum install tree wget curl vim rsync htop w3m patch -y}
 
   deb-helper-packages:
     provisioners:
