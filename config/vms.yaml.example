@@ -4,6 +4,32 @@ vms:
   # NOTE: All `box:` declarations in this example point to vagrantcloud.com
   # and require Vagrant 1.5.0 or newer to function.
 
+  - name: pe-400-master
+    debug-kit: true
+    box: puppetlabs/centos-6.6-64-nocm
+    roles:
+      - el-helper-packages
+      - pe-forward-console
+      - el-stop-firewall
+      - el-fix-path
+      - 4gb-memory
+      - pl-src-sync
+      - insecure-root-ssh
+      - pe-builds-sync
+      - base
+
+  - name: pe-400-agent
+    debug-kit: true
+    box: puppetlabs/centos-6.6-64-nocm
+    roles:
+      - el-helper-packages
+      - el-stop-firewall
+      - el-fix-path
+      - pl-src-sync
+      - insecure-root-ssh
+        #      - pe-builds-sync
+      - base
+
   - name: pe-380-master
     debug-kit: true
     box: puppetlabs/centos-6.6-64-nocm
@@ -14,7 +40,8 @@ vms:
       - el-fix-path
       - 4gb-memory
       - pl-src-sync
-        #      - pe-builds-sync
+      - insecure-root-ssh
+      - pe-builds-sync
       - base
 
   - name: pe-380-agent
@@ -25,6 +52,7 @@ vms:
       - el-stop-firewall
       - el-fix-path
       - pl-src-sync
+      - insecure-root-ssh
         #      - pe-builds-sync
       - base
 
@@ -37,7 +65,8 @@ vms:
       - el-fix-path
       - 4gb-memory
       - pl-src-sync
-        #      - pe-builds-sync
+      - insecure-root-ssh
+      - pe-builds-sync
       - base
 
   - name: pe-372-agent
@@ -48,6 +77,7 @@ vms:
       - el-stop-firewall
       - el-fix-path
       - pl-src-sync
+      - insecure-root-ssh
         #      - pe-builds-sync
       - base
 
@@ -60,7 +90,8 @@ vms:
       - el-stop-firewall
       - el-fix-path
       - pl-src-sync
-        #      - pe-builds-sync
+      - insecure-root-ssh
+      - pe-builds-sync
       - 1gb-memory
       - base
 
@@ -72,6 +103,7 @@ vms:
       - el-stop-firewall
       - el-fix-path
       - pl-src-sync
+      - insecure-root-ssh
         #      - pe-builds-sync
       - base
 

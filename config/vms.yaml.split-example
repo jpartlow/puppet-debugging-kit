@@ -22,7 +22,7 @@ vms:
       - el-helper-packages
       - el-stop-firewall
       - el-fix-path
-      - 3gb-memory
+      - 4gb-memory
       - pl-src-sync
       - pe-builds-sync
       - insecure-root-ssh
@@ -38,7 +38,7 @@ vms:
       - el-fix-path
       - 1gb-memory
       - pl-src-sync
-        #      - pe-builds-sync
+      - pe-builds-sync
       - insecure-root-ssh
       - base
 
@@ -53,7 +53,7 @@ vms:
       - el-fix-path
       - 1gb-memory
       - pl-src-sync
-        #      - pe-builds-sync
+      - pe-builds-sync
       - insecure-root-ssh
       - base
 
