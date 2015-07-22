@@ -12,6 +12,7 @@ vms:
       - pe-forward-console
       - el-stop-firewall
       - el-fix-path
+      - el-ntpdate
       - 4gb-memory
       - pl-src-sync
       - insecure-root-ssh
@@ -26,6 +27,7 @@ vms:
       - el-stop-firewall
       - el-fix-path
       - pl-src-sync
+      - el-ntpdate
       - insecure-root-ssh
         #      - pe-builds-sync
       - base

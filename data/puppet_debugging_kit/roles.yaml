@@ -105,6 +105,24 @@ roles:
           [ -f /vagrant/id_rsa.pub ] && cat /vagrant/id_rsa.pub >> /root/.ssh/authorized_keys
           chmod 600 /root/.ssh/authorized_keys
 
+  el-ntpdate:
+    provisioners:
+      - type: shell
+        inline: |
+          if ! which ntpdate; then
+            yum install -y ntpdate
+          fi
+          ntpdate 0.us.pool.ntp.org
+
+  deb-ntpdate:
+    provisioners:
+      - type: shell
+        inline: |
+          if ! which ntpdate; then
+            apt-get install -y ntpdate
+          fi
+          ntpdate 0.us.pool.ntp.org
+
   # Puppet Open Source Roles
   # ========================
   el-6-repos:
