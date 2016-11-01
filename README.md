@@ -104,12 +104,10 @@ vim config/openstack.yaml
 ```
 
 change keypair_name to "id_rsa-acceptance_pub"
-change networks: from "['network0']" to "['network1']"
-add security_groups: ['sg0'] right below networks
 change private_key_path: to '~/.ssh/id_rsa-acceptance'
 
 NOTE: You'll need to get a copy of the acceptance key, or use a different key.  
-You can get a copy of the acceptance key here: [id_rsa-acceptance](https://github.com/puppetlabs/puppetlabs-modules/blob/c458230ae5ccb85053620ddb69b69be4f3681567/secure/jenkins/id_rsa-acceptance) 
+You can get a copy of the acceptance key here: [id_rsa-acceptance](https://github.com/puppetlabs/puppetlabs-modules/blob/c458230ae5ccb85053620ddb69b69be4f3681567/secure/jenkins/id_rsa-acceptance)
 
 [Download the openrc.sh script from openstack web ui](https://confluence.puppetlabs.com/display/OPS/SLICE+User+Documentation#SLICEUserDocumentation-downloading_openstack_rcDownloadingOpenStackRCFileforAPIAccess)
 
