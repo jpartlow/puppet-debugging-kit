@@ -117,21 +117,21 @@ roles:
   small-size:
     providers:
       - type: openstack
-          #2 cpu, 2GB mem
-          flavor: 'g1.medium'
+        #2 cpu, 2GB mem
+        flavor: 'g1.medium'
 
   #equivalent to 2-gb with added openstack flavor
   medium-size:
     providers:
       - type: openstack
-          #4 cpu, 4GB mem
-          flavor: 'g1.large'
+        #4 cpu, 4GB mem
+        flavor: 'g1.large'
 
   #equivalent to 4-gb with added openstack flavor
   large-size:
     providers:
       - type: openstack
-          #8 cpu, 8GB mem
-          flavor: 'g1.xlarge'
+        #8 cpu, 8GB mem
+        flavor: 'g1.xlarge'
 
 # vim: set ft=yaml:
