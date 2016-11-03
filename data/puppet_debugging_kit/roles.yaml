@@ -80,6 +80,15 @@ roles:
         vmx:
           memsize: 2048
 
+  2.5gb-memory:
+    providers:
+      - type: virtualbox
+        customize:
+          - [modifyvm, !ruby/sym id, '--memory', 2560]
+      - type: vmware_fusion
+        vmx:
+          memsize: 2560
+
   3gb-memory:
     providers:
       - type: virtualbox
