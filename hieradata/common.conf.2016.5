@@ -1,0 +1,35 @@
+"console_admin_password": "puppetlabsunique"
+"puppet_enterprise::puppet_master_host": "%{::trusted.certname}"
+"puppet_enterprise::use_application_services": true
+
+# Smaller memory requirements new
+"puppet_enterprise::profile::amq::broker::heap_mb": "96"
+"puppet_enterprise::profile::master::java_args": {
+  "Xmx": "384m"
+  "Xms": "128m"
+  "XX:MaxPermSize": "=96m"
+  "XX:PermSize": "=64m"
+  "XX:+UseG1GC": ""
+}
+"puppet_enterprise::profile::puppetdb::java_args": {
+  "Xmx": "256m"
+  "Xms": "128m"
+  "XX:MaxPermSize": "=96m"
+  "XX:PermSize": "=64m"
+  "XX:+UseG1GC": ""
+}
+"puppet_enterprise::profile::console::java_args": {
+  "Xmx": "128m"
+  "Xms": "64m"
+  "XX:MaxPermSize": "=96m"
+  "XX:PermSize": "=64m"
+  "XX:+UseG1GC": ""
+}
+"puppet_enterprise::master::puppetserver::jruby_max_active_instances": 1
+#shared_buffers takes affect during install but is not managed after
+"puppet_enterprise::profile::database::shared_buffers": "4MB"
+"puppet_enterprise::profile::orchestrator::java_args": {
+  "Xmx": "96m"
+  "Xms": "64m"
+  "XX:+UseG1GC": ""
+}
