@@ -119,6 +119,37 @@ source ~/Downloads/<your_username>-openrc.sh
 vagrant up <VM_NAME> --provider=openstack
 ```
 
+#### Troubleshooting the openstack provider
+
+Occasionally, vagrant will refuse to do anything if it can't find a node in SLICE.  In that case you can do the following:
+
+```
+VAGRANT_OPENSTACK_LOG=debug
+vagrant status 
+```
+
+This will error out and you can see which id it failed on.  
+
+```
+...
+2016-11-08 11:53 | DEBUG | response => body    : {"itemNotFound": {"message": "Instance 56989419-b112-4fa4-a5d7-5aedb8cf481e could not be found.", "code": 404}}
+Vagrant failed to initialize at a very early stage:
+...
+```
+
+Now take that id and find out which machine it is in vagrant.
+
+```
+cd .vagrant/machines/
+grep 56989419-b112-4fa4-a5d7-5aedb8cf481e */openstack/id
+```
+
+That returns you the node that's having the issue now you can delete it's openstack information.
+
+```
+rm -rf <node_name>/openstack/*
+```
+
 ## Extending and Contributing
 
 The debugging kit can be thought of as a library of configuration and data for [Oscar](https://github.com/adrienthebo/oscar).
