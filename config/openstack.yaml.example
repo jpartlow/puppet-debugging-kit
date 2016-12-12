@@ -29,7 +29,8 @@ roles:
         # environment. If using your own SSH keypair instead of the public
         # Vagrant key, then change private_key_path below.
         keypair_name: 'vagrant-insecure'
-        networks: ['network0']
+        networks: ['network1']
+        security_groups: ['sg0']
 
         overrides:
           ssh:
