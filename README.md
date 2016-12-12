@@ -86,11 +86,12 @@ There are a few roles that assist with creating VMs that run Puppet Open Source 
 
 ### Running on SLICE
 
-Before starting you need a SLICE account:
+Before starting read through the following docs to get a SLICE account
+registered and get a general introduction to how it works:
 
 https://confluence.puppetlabs.com/display/OPS/SLICE+User+Documentation
 
-Now onto onto the technical steps:
+Now onto onto the technical steps of connecting the Debug Kit to SLICE:
 
 ```
 git clone https://github.com/puppetlabs/puppet-debugging-kit slice-debug-kit
@@ -99,23 +100,41 @@ cd slice-debug-kit
 rake setup:global
 
 cp config/openstack.yaml.example config/openstack.yaml
-
-vim config/openstack.yaml
 ```
 
-change keypair_name to "id_rsa-acceptance_pub"
-change private_key_path: to '~/.ssh/id_rsa-acceptance'
+The above steps will configure the OpenStack provider with defaults that match
+most SLICE accounts. These defaults can be fine-tuned by editing the
+`config/openstack.yaml` file. The defaults configure VMs for SSH access using
+the engineering acceptance testing key. The private half of this key will need
+to be in the following location on your host machine:
 
-NOTE: You'll need to get a copy of the acceptance key, or use a different key.  
-You can get a copy of the acceptance key here: [id_rsa-acceptance](https://github.com/puppetlabs/puppetlabs-modules/blob/c458230ae5ccb85053620ddb69b69be4f3681567/secure/jenkins/id_rsa-acceptance)
+    ~/.ssh/id_rsa-acceptance
 
-[Download the openrc.sh script from openstack web ui](https://confluence.puppetlabs.com/display/OPS/SLICE+User+Documentation#SLICEUserDocumentation-downloading_openstack_rcDownloadingOpenStackRCFileforAPIAccess)
+The public half of the key will need to be added to your SLICE account
+as `id_rsa-acceptance_pub` using the "Import Key Pair" procedure documented here:
 
-```
+  https://confluence.puppetlabs.com/display/OPS/SLICE+User+Documentation#SLICEUserDocumentation-AddingKeyPair
+
+Both halves of the acceptance testing key can be found here:
+
+  https://confluence.puppetlabs.com/display/QE/SSH+access+to+vmpooler+VMs
+
+Once configured, the OpenStack provider reads slice access credentials from
+environment variables set in the shell. A script which sets these variable can
+be downloaded from the SLICE web UI as documented here:
+
+  https://confluence.puppetlabs.com/display/OPS/SLICE+User+Documentation#SLICEUserDocumentation-downloading_openstack_rcDownloadingOpenStackRCFileforAPIAccess
+
+With these pieces in place, Debug Kit VMs can be launched into SLICE using
+the following commands:
+
+```bash
+# Only needed once per terminal session
 source ~/Downloads/<your_username>-openrc.sh
 
 vagrant up <VM_NAME> --provider=openstack
 ```
+
 
 #### Troubleshooting the openstack provider
 
@@ -123,10 +142,10 @@ Occasionally, vagrant will refuse to do anything if it can't find a node in SLIC
 
 ```
 VAGRANT_OPENSTACK_LOG=debug
-vagrant status 
+vagrant status
 ```
 
-This will error out and you can see which id it failed on.  
+This will error out and you can see which id it failed on.
 
 ```
 ...

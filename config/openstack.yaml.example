@@ -26,18 +26,20 @@ roles:
         flavor: g1.small
 
         # NOTE: Change these to appropriate values for your OpenStack
-        # environment. If using your own SSH keypair instead of the public
-        # Vagrant key, then change private_key_path below.
-        keypair_name: 'vagrant-insecure'
+        # environment. If using your own SSH keypair instead of the
+        # shared Acceptance testing key, then change private_key_path
+        # below in addition to the keypair_name setting.
+        keypair_name: 'id_rsa-acceptance_pub'
         networks: ['network1']
         security_groups: ['sg0']
 
         overrides:
           ssh:
-            private_key_path: '~/.vagrant.d/insecure_private_key'
+            private_key_path: '~/.ssh/id_rsa-acceptance'
             # NOTE: OpenStack _requires_ SSH username to be set, so we use the
-            # default for CentOS. Other systems, like Debian/Ubuntu, may use a
-            # different default user.
+            # default for CentOS. Ubuntu templates, use a different default
+            # user, "ubuntu", and will have to be set on a per-instance basis.
+            # Other templates may use other default users.
             username: centos
           pe_build:
             shared_installer: false
