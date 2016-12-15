@@ -14,13 +14,14 @@ roles:
         username: '<%= ENV["OS_USERNAME"] %>'
         password: '<%= ENV["OS_PASSWORD"] %>'
 
+<% if ENV["OS_TENANT_NAME"] %>
         tenant_name: '<%= ENV["OS_TENANT_NAME"] %>'
-        floating_ip_pool: 'ext-net-pdx1-opdx1'
-
-        # This is a file in the top-level directory that lists which
-        # directories to exclude from sync.
-        rsync_ignore_files:
-          - rsync_ignore
+<% elsif ENV["OS_PROJECT_NAME"] %>
+        identity_api_version: '3'
+        project_name: '<%= ENV["OS_PROJECT_NAME"] %>'
+        domain_name: '<%= ENV["OS_USER_DOMAIN_NAME"] %>'
+<% end %>
+        floating_ip_pool: 'ext-net'
 
         image: centos_6_x86_64
         flavor: g1.small
@@ -46,6 +47,15 @@ roles:
             download_root: http://pe-releases.puppetlabs.lan/:version
           vm_defaults:
             box: 'sharpie/dummy'
+            synced_folders:
+              - type: rsync
+                host_path: '.'
+                guest_path: '/vagrant'
+                # Large working directories? Add em' here.
+                rsync__exclude:
+                  - .vagrant
+                  - .bundle
+                  - .pe_build
             provisioners:
               - type: hosts
                 name: 'base networking'
@@ -64,8 +74,6 @@ roles:
   windows:
     providers:
       - type: openstack
-        # Windows don't RSync.
-        sync_method: none
         user_data: |
           <powershell>
           # Set well-known Administrator password
@@ -100,6 +108,12 @@ roles:
           winrm:
             username: Administrator
             password: 'V@grant!'
+          vm_defaults:
+            synced_folders:
+              - host_path: '.'
+                guest_path: '/vagrant'
+                # Windows gets very confused when trying to find RSync.
+                disabled: true
 
   1gb-memory:
     providers:
