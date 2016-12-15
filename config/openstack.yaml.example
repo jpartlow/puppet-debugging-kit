@@ -21,7 +21,7 @@ roles:
         project_name: '<%= ENV["OS_PROJECT_NAME"] %>'
         domain_name: '<%= ENV["OS_USER_DOMAIN_NAME"] %>'
 <% end %>
-        floating_ip_pool: 'ext-net'
+        floating_ip_pool: 'ext-net-pdx1-opdx1'
 
         image: centos_6_x86_64
         flavor: g1.small
