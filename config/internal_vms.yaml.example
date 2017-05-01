@@ -12,12 +12,12 @@ vms:
       - type: openstack
         image: 'windows_2012_r2_std_eval_x86_64'
         # Image requires more disk space than g1.medium
-        flavor: g1.large
+        flavor: d1.medium
       - type: vsphere
         template_name: 'templates/win-2012r2-x86_64'
     roles:
       - windows
-      - 2gb-memory
+      - medium-size
       - base
 
   - name: pe-201643-agent-win2008
@@ -61,7 +61,7 @@ vms:
       - pe-memory-tuning2
       - el-stop-firewall
       - el-fix-path
-      - 2gb-memory
+      - medium-size
       - base
 
   - name: pe-20164nightly-agent
@@ -90,7 +90,7 @@ vms:
       - pe-memory-tuning2
       - el-stop-firewall
       - el-fix-path
-      - 4gb-memory
+      - medium-size
       - base
 
   - name: pe-20172nightly-agent
