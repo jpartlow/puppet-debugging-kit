@@ -36,6 +36,9 @@ roles:
 
         overrides:
           ssh:
+            # Required starting with version 0.11 of the OpenStack provider,
+            # else the kepair_name is completely ignored.
+            insert_key: true
             private_key_path: '~/.ssh/id_rsa-acceptance'
             # NOTE: OpenStack _requires_ SSH username to be set, so we use the
             # default for CentOS. Ubuntu templates, use a different default
