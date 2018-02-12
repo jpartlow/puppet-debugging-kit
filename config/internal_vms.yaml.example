@@ -14,7 +14,7 @@ vms:
         # Image requires more disk space than g1.medium
         flavor: d1.medium
       - type: vsphere
-        template_name: 'templates/win-2012r2-x86_64'
+        template_name: 'cs-general/templates/win-2012r2-x86_64'
     roles:
       - windows
       - medium-size
@@ -26,7 +26,7 @@ vms:
     box: windows-2008r2-x64-virtualbox-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/win-2008r2-x86_64'
+        template_name: 'cs-general/templates/win-2008r2-x86_64'
     roles:
       - windows
       - 2gb-memory
@@ -43,7 +43,7 @@ vms:
     box: solaris-11.2-i387-virtualbox-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/solaris-11-x86_64'
+        template_name: 'cs-general/templates/solaris-11-x86_64'
     debug-kit: true
     roles:
       - base
@@ -53,7 +53,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -69,7 +69,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -83,7 +83,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -99,7 +99,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -113,7 +113,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -129,7 +129,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:

@@ -12,7 +12,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -28,7 +28,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -42,7 +42,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -58,7 +58,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -72,7 +72,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -88,7 +88,7 @@ vms:
     box: puppetlabs/centos-7.2-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-7-x86_64'
+        template_name: 'cs-general/templates/centos-7-x86_64'
       - type: openstack
         image: 'centos_7_x86_64'
     roles:
@@ -102,7 +102,7 @@ vms:
     box: puppetlabs/centos-6.6-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-6-x86_64'
+        template_name: 'cs-general/templates/centos-6-x86_64'
       - type: openstack
         image: 'centos_6_x86_64'
     roles:
@@ -118,7 +118,7 @@ vms:
     box: puppetlabs/centos-6.6-64-nocm
     providers:
       - type: vsphere
-        template_name: 'templates/centos-6-x86_64'
+        template_name: 'cs-general/templates/centos-6-x86_64'
       - type: openstack
         image: 'centos_6_x86_64'
     roles:

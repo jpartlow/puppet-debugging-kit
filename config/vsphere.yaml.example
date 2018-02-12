@@ -14,12 +14,12 @@ roles:
         user: '<%= ENV["VCENTER_USER"] %>'
         password: '<%= ENV["VCENTER_PASSWORD"] %>'
 
-        data_center_name: 'opdx5'
-        compute_resource_name: 'general'
-        vm_base_path: 'supteam/<%= (ENV["VCENTER_USER"] || "").split("@").first %>'
+        data_center_name: 'opdx1'
+        compute_resource_name: 'cs-general'
+        vm_base_path: 'cs-general/supteam/<%= (ENV["VCENTER_USER"] || "").split("@").first %>'
         linked_clone: true
 
-        template_name: 'templates/redhat-6-x86_64'
+        template_name: 'cs-general/templates/redhat-6-x86_64'
 
         overrides:
           ssh:
