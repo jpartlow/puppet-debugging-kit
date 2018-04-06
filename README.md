@@ -89,7 +89,7 @@ There are a few roles that assist with creating VMs that run Puppet Open Source 
 Before starting read through the following docs to get a SLICE account
 registered and get a general introduction to how it works:
 
-https://confluence.puppetlabs.com/display/OPS/SLICE+User+Documentation
+https://confluence.puppetlabs.com/display/SRE/SLICE+User+Documentation
 
 Now onto onto the technical steps of connecting the Debug Kit to SLICE:
 
@@ -113,17 +113,19 @@ to be in the following location on your host machine:
 The public half of the key will need to be added to your SLICE account
 as `id_rsa-acceptance_pub` using the "Import Key Pair" procedure documented here:
 
-  https://confluence.puppetlabs.com/display/OPS/SLICE+User+Documentation#SLICEUserDocumentation-AddingKeyPair
+  https://confluence.puppetlabs.com/display/SRE/SLICE+User+Documentation#SLICEUserDocumentation-AddingKeyPair
 
 Both halves of the acceptance testing key can be found here:
 
-  https://confluence.puppetlabs.com/display/QE/SSH+access+to+vmpooler+VMs
+  https://confluence.puppetlabs.com/display/SRE/SSH+access+to+vmpooler+VMs
 
 Once configured, the OpenStack provider reads slice access credentials from
 environment variables set in the shell. A script which sets these variable can
 be downloaded from the SLICE web UI as documented here:
 
-  https://confluence.puppetlabs.com/display/OPS/SLICE+User+Documentation#SLICEUserDocumentation-downloading_openstack_rcDownloadingOpenStackRCFileforAPIAccess
+  https://confluence.puppetlabs.com/display/SRE/SLICE+User+Documentation#SLICEUserDocumentation-downloading_openstack_rcDownloadingOpenStackRCFileforAPIAccess
+  
+  Note: Make sure to download the `OpenStack RC File v3`
 
 With these pieces in place, Debug Kit VMs can be launched into SLICE using
 the following commands:
