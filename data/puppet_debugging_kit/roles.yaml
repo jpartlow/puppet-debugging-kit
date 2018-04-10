@@ -9,6 +9,12 @@ roles:
       # of the first things configured. Other roles can hook into the
       # 'base networking' provisioner and override settings.
       - {type: hosts, name: 'base networking'}
+      - type: shell
+        inline: |-
+          if [[ -d /home/vagrant/.ssh ]]; then
+            mkdir /root/.ssh
+            cp /home/vagrant/.ssh/authorized_keys /root/.ssh/
+          fi
     providers:
       - type: virtualbox
         linked_clone: true
@@ -324,6 +330,24 @@ roles:
             install -m 0644 /tmp/common.yaml /etc/puppetlabs/code/environments/production/hieradata
             install -m 0644 /tmp/common.yaml /etc/puppetlabs/code/environments/production/data
           fi
+
+  pe-forward-psql:
+    forwarded_ports:
+      - {guest: 5432, host: 5432, auto_correct: true}
+    provisioners:
+      - type: pe_bootstrap
+        answer_extras:
+          - |
+            "puppet_enterprise::profile::database::additional_pg_hba_rules": {
+              "insecure_dev_access": {
+                "type": "host",
+                "database": "all",
+                "user": "all",
+                "address": "0.0.0.0/0",
+                "auth_method": "trust",
+                "order": "002"
+              }
+            }
 
   pe-forward-console:
     forwarded_ports:
