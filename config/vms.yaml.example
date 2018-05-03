@@ -7,7 +7,7 @@ ssh:
 
 vms:
 
-  - name: pe-201734-master
+  - name: pe-201810-master
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
     providers:
@@ -23,7 +23,7 @@ vms:
       - medium-size
       - base
 
-  - name: pe-201734-agent
+  - name: pe-201810-agent
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
     providers:
@@ -37,37 +37,7 @@ vms:
       - base
 
 
-  - name: pe-201725-master
-    debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
-    providers:
-      - type: vsphere
-        template_name: 'cs-general/templates/centos-7-x86_64'
-      - type: openstack
-        image: 'centos_7_x86_64'
-    roles:
-      - pe-forward-console
-      - pe-memory-tuning2
-      - el-stop-firewall
-      - el-fix-path
-      - medium-size
-      - base
-
-  - name: pe-201725-agent
-    debug-kit: true
-    box: puppetlabs/centos-7.2-64-nocm
-    providers:
-      - type: vsphere
-        template_name: 'cs-general/templates/centos-7-x86_64'
-      - type: openstack
-        image: 'centos_7_x86_64'
-    roles:
-      - el-stop-firewall
-      - el-fix-path
-      - base
-
-
-  - name: pe-2016410-master
+  - name: pe-201736-master
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
     providers:
@@ -83,7 +53,37 @@ vms:
       - medium-size
       - base
 
-  - name: pe-2016410-agent
+  - name: pe-201736-agent
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'centos_7_x86_64'
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - base
+
+
+  - name: pe-2016411-master
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'centos_7_x86_64'
+    roles:
+      - pe-forward-console
+      - pe-memory-tuning2
+      - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-2016411-agent
     debug-kit: true
     box: puppetlabs/centos-7.2-64-nocm
     providers:
