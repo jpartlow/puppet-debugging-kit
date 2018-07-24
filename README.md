@@ -84,6 +84,90 @@ There are a few roles that assist with creating VMs that run Puppet Open Source 
   - `poss-yum-repos`:
     This role configures access to the official repositories at yum.puppetlabs.com for CentOS and Fedora VMs.
 
+### Running on SLICE
+
+Before starting read through the following docs to get a SLICE account
+registered and get a general introduction to how it works:
+
+https://confluence.puppetlabs.com/display/SRE/SLICE+User+Documentation
+
+Now onto onto the technical steps of connecting the Debug Kit to SLICE:
+
+```
+git clone https://github.com/puppetlabs/puppet-debugging-kit slice-debug-kit
+cd slice-debug-kit
+
+rake setup:global
+
+cp config/openstack.yaml.example config/openstack.yaml
+```
+
+The above steps will configure the OpenStack provider with defaults that match
+most SLICE accounts. These defaults can be fine-tuned by editing the
+`config/openstack.yaml` file. The defaults configure VMs for SSH access using
+the engineering acceptance testing key. The private half of this key will need
+to be in the following location on your host machine:
+
+    ~/.ssh/id_rsa-acceptance
+
+The public half of the key will need to be added to your SLICE account
+as `id_rsa-acceptance_pub` using the "Import Key Pair" procedure documented here:
+
+  https://confluence.puppetlabs.com/display/SRE/SLICE+User+Documentation#SLICEUserDocumentation-AddingKeyPair
+
+Both halves of the acceptance testing key can be found here:
+
+  https://confluence.puppetlabs.com/display/SRE/SSH+access+to+vmpooler+VMs
+
+Once configured, the OpenStack provider reads slice access credentials from
+environment variables set in the shell. A script which sets these variable can
+be downloaded from the SLICE web UI as documented here:
+
+  https://confluence.puppetlabs.com/display/SRE/SLICE+User+Documentation#SLICEUserDocumentation-downloading_openstack_rcDownloadingOpenStackRCFileforAPIAccess
+  
+  Note: Make sure to download the `OpenStack RC File v3`
+
+With these pieces in place, Debug Kit VMs can be launched into SLICE using
+the following commands:
+
+```bash
+# Only needed once per terminal session
+source ~/Downloads/<your_username>-openrc.sh
+
+vagrant up <VM_NAME> --provider=openstack
+```
+
+
+#### Troubleshooting the openstack provider
+
+Occasionally, vagrant will refuse to do anything if it can't find a node in SLICE.  In that case you can do the following:
+
+```
+VAGRANT_OPENSTACK_LOG=debug
+vagrant status
+```
+
+This will error out and you can see which id it failed on.
+
+```
+...
+2016-11-08 11:53 | DEBUG | response => body    : {"itemNotFound": {"message": "Instance 56989419-b112-4fa4-a5d7-5aedb8cf481e could not be found.", "code": 404}}
+Vagrant failed to initialize at a very early stage:
+...
+```
+
+Now take that id and find out which machine it is in vagrant.
+
+```
+cd .vagrant/machines/
+grep 56989419-b112-4fa4-a5d7-5aedb8cf481e */openstack/id
+```
+
+That returns you the node that's having the issue now you can delete it's openstack information.
+
+```
+rm -rf <node_name>/openstack/*
+```
 
 ## Extending and Contributing
 

@@ -1,105 +1,37 @@
 ---
+# Keep the default Vagrant SSH key. It's publicly available and thus
+# "insecure", but these VMs aren't for production use and having a well-known
+# key allows for easy automation and documentation.
+ssh:
+  insert_key: false
+
 vms:
 
-  # NOTE: All `box:` declarations in this example point to vagrantcloud.com
-  # and require Vagrant 1.5.0 or newer to function.
-
-  - name: pe-400-master
+  - name: pe-201812-master
     debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'centos_7_x86_64'
     roles:
       - el-helper-packages
       - pe-forward-console
+      - pe-memory-tuning2
       - el-stop-firewall
       - el-fix-path
-      - el-ntpdate
-      - 4gb-memory
-      - pl-src-sync
-      - insecure-root-ssh
-      - pe-builds-sync
+      - medium-size
       - base
 
-  - name: pe-400-agent
+  - name: pe-201812-agent
     debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
-    roles:
-      - el-helper-packages
-      - el-stop-firewall
-      - el-fix-path
-      - pl-src-sync
-      - el-ntpdate
-      - insecure-root-ssh
-        #      - pe-builds-sync
-      - base
-
-  - name: pe-380-master
-    debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
-    roles:
-      - el-helper-packages
-      - pe-forward-console
-      - el-stop-firewall
-      - el-fix-path
-      - 4gb-memory
-      - pl-src-sync
-      - insecure-root-ssh
-      - pe-builds-sync
-      - base
-
-  - name: pe-380-agent
-    debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
-    roles:
-      - el-helper-packages
-      - el-stop-firewall
-      - el-fix-path
-      - pl-src-sync
-      - insecure-root-ssh
-        #      - pe-builds-sync
-      - base
-
-  - name: pe-372-master
-    debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
-    roles:
-      - pe-forward-console
-      - el-stop-firewall
-      - el-fix-path
-      - 4gb-memory
-      - pl-src-sync
-      - insecure-root-ssh
-      - pe-builds-sync
-      - base
-
-  - name: pe-372-agent
-    debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
-    roles:
-      - el-helper-packages
-      - el-stop-firewall
-      - el-fix-path
-      - pl-src-sync
-      - insecure-root-ssh
-        #      - pe-builds-sync
-      - base
-
-  - name: pe-332-master
-    debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
-    roles:
-      - el-helper-packages
-      - pe-forward-console
-      - el-stop-firewall
-      - el-fix-path
-      - pl-src-sync
-      - insecure-root-ssh
-      - pe-builds-sync
-      - 1gb-memory
-      - base
-
-  - name: pe-332-agent
-    debug-kit: true
-    box: puppetlabs/centos-6.6-64-nocm
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'centos_7_x86_64'
     roles:
       - el-helper-packages
       - el-stop-firewall
@@ -110,13 +42,102 @@ vms:
       - base
 
 
-  - name: poss-head-master
-    box: puppetlabs/centos-6.6-64-nocm
-    hostname: poss-head-centos.puppetdebug.vlan
+  - name: pe-201738-master
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'centos_7_x86_64'
     roles:
-      - poss-envpuppet
-      - el-6-ruby193
+      - pe-forward-console
+      - pe-memory-tuning2
       - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-201738-agent
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'centos_7_x86_64'
+    roles:
+      - el-helper-packages
+      - el-stop-firewall
+      - el-fix-path
+      - pl-src-sync
+      - insecure-root-ssh
+        #      - pe-builds-sync
+      - base
+
+
+  - name: pe-2016413-master
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'centos_7_x86_64'
+    roles:
+      - el-helper-packages
+      - pe-forward-console
+      - pe-memory-tuning2
+      - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-2016413-agent
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'centos_7_x86_64'
+    roles:
+      - el-helper-packages
+      - el-stop-firewall
+      - el-fix-path
+      - pl-src-sync
+      - insecure-root-ssh
+        #      - pe-builds-sync
+      - base
+
+
+  - name: pe-387-master
+    debug-kit: true
+    box: puppetlabs/centos-6.6-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-6-x86_64'
+      - type: openstack
+        image: 'centos_6_x86_64'
+    roles:
+      - pe-forward-console
+      - pe-memory-tuning
+      - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-387-agent
+    debug-kit: true
+    box: puppetlabs/centos-6.6-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-6-x86_64'
+      - type: openstack
+        image: 'centos_6_x86_64'
+    roles:
+      - el-stop-firewall
+      - el-fix-path
       - base
 
 # vim: set ft=yaml:
