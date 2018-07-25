@@ -8,6 +8,8 @@ Dir.chdir(vagrant_dir)
 
 require_relative 'lib/puppet_debugging_kit/logging'
 
+ENV['VAGRANT_DEFAULT_PROVIDER'] ||= 'openstack'
+
 if defined? Oscar # Do nothing if Oscar isn't loaded.
   require_relative 'lib/puppet_debugging_kit'
   PuppetDebuggingKit::PluginChecks.run

@@ -1,0 +1,159 @@
+---
+# Keep the default Vagrant SSH key. It's publicly available and thus
+# "insecure", but these VMs aren't for production use and having a well-known
+# key allows for easy automation and documentation.
+ssh:
+  insert_key: false
+
+common_centos_openstack: &common_centos_openstack
+  debug-kit: false
+  box: puppetlabs/centos-7.2-64-nocm
+
+vms:
+
+  - name: pe-201812-master
+    <<: *common_centos_openstack
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - centos-7-medium
+      - base
+
+  - name: pe-201812-replica
+    <<: *common_centos_openstack
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - centos-7-medium
+      - base
+
+  - name: pe-201812-compile1
+    <<: *common_centos_openstack
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - centos-7-small
+      - base
+
+  - name: pe-201812-compile2
+    <<: *common_centos_openstack
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - centos-7-small
+      - base
+
+  - name: pe-201812-lb
+    <<: *common_centos_openstack
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - centos-7-small
+      - base
+
+  - name: pe-201812-agent1
+    <<: *common_centos_openstack
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - centos-7-tiny
+      - base
+
+  - name: pe-201812-agent2
+    <<: *common_centos_openstack
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - centos-7-tiny
+      - base
+
+  - name: pe-201738-master
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'CentOS 7 x86_64'
+    roles:
+      - pe-forward-console
+      - pe-memory-tuning2
+      - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-201738-agent
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'CentOS 7 x86_64'
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - base
+
+
+  - name: pe-2016413-master
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'CentOS 7 x86_64'
+    roles:
+      - pe-forward-console
+      - pe-memory-tuning2
+      - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-2016413-agent
+    debug-kit: true
+    box: puppetlabs/centos-7.2-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-7-x86_64'
+      - type: openstack
+        image: 'CentOS 7 x86_64'
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - base
+
+
+  - name: pe-387-master
+    debug-kit: true
+    box: puppetlabs/centos-6.6-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-6-x86_64'
+      - type: openstack
+        image: 'centos_6_x86_64'
+    roles:
+      - pe-forward-console
+      - pe-memory-tuning
+      - el-stop-firewall
+      - el-fix-path
+      - medium-size
+      - base
+
+  - name: pe-387-agent
+    debug-kit: true
+    box: puppetlabs/centos-6.6-64-nocm
+    providers:
+      - type: vsphere
+        template_name: 'cs-general/templates/centos-6-x86_64'
+      - type: openstack
+        image: 'centos_6_x86_64'
+    roles:
+      - el-stop-firewall
+      - el-fix-path
+      - base
+
+# vim: set ft=yaml:
