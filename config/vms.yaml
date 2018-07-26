@@ -14,7 +14,6 @@ vms:
   - name: pe-201812-master
     <<: *common_centos_openstack
     roles:
-      - el-stop-firewall
       - el-fix-path
       - centos-7-medium
       - base
@@ -22,7 +21,6 @@ vms:
   - name: pe-201812-replica
     <<: *common_centos_openstack
     roles:
-      - el-stop-firewall
       - el-fix-path
       - centos-7-medium
       - base
@@ -30,7 +28,6 @@ vms:
   - name: pe-201812-compile1
     <<: *common_centos_openstack
     roles:
-      - el-stop-firewall
       - el-fix-path
       - centos-7-small
       - base
@@ -38,7 +35,6 @@ vms:
   - name: pe-201812-compile2
     <<: *common_centos_openstack
     roles:
-      - el-stop-firewall
       - el-fix-path
       - centos-7-small
       - base
@@ -46,7 +42,6 @@ vms:
   - name: pe-201812-lb
     <<: *common_centos_openstack
     roles:
-      - el-stop-firewall
       - el-fix-path
       - centos-7-small
       - base
@@ -54,7 +49,6 @@ vms:
   - name: pe-201812-agent1
     <<: *common_centos_openstack
     roles:
-      - el-stop-firewall
       - el-fix-path
       - centos-7-tiny
       - base
@@ -62,7 +56,6 @@ vms:
   - name: pe-201812-agent2
     <<: *common_centos_openstack
     roles:
-      - el-stop-firewall
       - el-fix-path
       - centos-7-tiny
       - base
