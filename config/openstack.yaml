@@ -138,7 +138,7 @@ roles:
         #1 cpu, 512MB mem
         flavor: 'vol.tiny'
         volume_boot:
-          :size: 5
+          :size: 10
           :delete_on_destroy: true
           :image: 'CentOS 7 x86_64'
 
